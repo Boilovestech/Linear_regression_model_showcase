@@ -147,12 +147,24 @@ if predict_button:
             unsafe_allow_html=True
         )
 
-# Visualization
-st.subheader("Budget Distribution")
-fig, ax = plt.subplots(figsize=(10, 6))
-budget_data = [tv, radio, newspaper]
-labels = ['TV', 'Radio', 'Newspaper']
-colors = ['#0080FF', '#00BFFF', '#00FFFF']
-ax.pie(budget_data, labels=labels, autopct='%1.1f%%', startangle=90, colors=colors)
-ax.axis('equal')
-st.pyplot(fig)
+        # Visualization
+        st.subheader("Budget Distribution and Prediction Visualization")
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
+
+        # Budget Distribution
+        budget_data = [tv, radio, newspaper]
+        labels = ['TV', 'Radio', 'Newspaper']
+        colors = ['#0080FF', '#00BFFF', '#00FFFF']
+        ax1.pie(budget_data, labels=labels, autopct='%1.1f%%', startangle=90, colors=colors)
+        ax1.set_title('Budget Distribution')
+
+        # Scatter plot of X_train, y_train, and predicted value
+        ax2.scatter(X_train.iloc[:, 0], y_train, color='blue', label='Training Data')
+        ax2.scatter(tv, prediction, color='red', s=100, label='Predicted Value')
+        ax2.set_xlabel('TV Budget')
+        ax2.set_ylabel('Sales')
+        ax2.set_title('TV Budget vs Sales')
+        ax2.legend()
+
+        st.pyplot(fig)
+

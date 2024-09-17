@@ -17,12 +17,6 @@ from sklearn.linear_model import LinearRegression
 lr = LinearRegression()
 lr.fit(X, y)
 
-#------------------------LINEAR REGRESSION----------------------------#
-
-from sklearn.linear_model import LinearRegression
-lr = LinearRegression()
-lr.fit(X, y)
-
 #------------------------PREDICTION AND EVALUATION----------------------------#
 
 #RMSA
@@ -140,15 +134,18 @@ newspaper = st.number_input("Newspaper Budget", min_value=0.0, step=0.1)
 predict_button = st.button("Predict", key="predict_button", use_container_width=True)
 
 if predict_button:
-    prediction = lr.predict(pd.DataFrame([[tv, radio, newspaper]], columns=X.columns))
-    st.markdown(
-        f"""
-        <div class='card'>
-            <p>Predicted Sales: <span class='metric-value animate-number'>${prediction[0]:.2f}</span></p>
-        </div>
-        """, 
-        unsafe_allow_html=True
-    )
+    if tv == 0.0 and radio == 0.0 and newspaper == 0.0:
+        st.warning("Please input values for the budgets.")
+    else:
+        prediction = lr.predict(pd.DataFrame([[tv, radio, newspaper]], columns=X.columns))
+        st.markdown(
+            f"""
+            <div class='card'>
+                <p>Predicted Sales: <span class='metric-value animate-number'>${prediction[0]:.2f}</span></p>
+            </div>
+            """, 
+            unsafe_allow_html=True
+        )
 
 # Visualization
 st.subheader("Budget Distribution")

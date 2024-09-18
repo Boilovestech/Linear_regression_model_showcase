@@ -146,31 +146,4 @@ if predict_button:
             """, 
             unsafe_allow_html=True
         )
-
-        # Visualization
-        st.subheader("Budget Distribution and Prediction Visualization")
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
-
-        # Budget Distribution
-        budget_data = [tv, radio, newspaper]
-        labels = ['TV', 'Radio', 'Newspaper']
-        colors = ['#0080FF', '#00BFFF', '#00FFFF']
-        ax1.pie(budget_data, labels=labels, autopct='%1.1f%%', startangle=90, colors=colors)
-        ax1.set_title('Budget Distribution')
-
-        # Scatter plot of X_train, y_train, and regression line
-        ax2.scatter(X_train.iloc[:, 0], y_train, color='blue', label='Training Data')
-        
-        # Calculate the regression line
-        x_range = np.linspace(X_train.iloc[:, 0].min(), X_train.iloc[:, 0].max(), 100)
-        y_pred = lr.predict(pd.DataFrame(x_range, columns=['TV']))
-        
-        # Plot the regression line
-        ax2.plot(x_range, y_pred, color='red', label='Regression Line')
-        
-        ax2.set_xlabel('TV Budget')
-        ax2.set_ylabel('Sales')
-        ax2.set_title('TV Budget vs Sales')
-        ax2.legend()
-
-        st.pyplot(fig)
+st.write("Made with 💖 from 🇮🇳 ")

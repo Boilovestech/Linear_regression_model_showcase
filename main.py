@@ -146,4 +146,4 @@ if predict_button:
             """, 
             unsafe_allow_html=True
         )
-st.write("Made with 💖 from 🇮🇳 ")
+st.write("Made with 💖 from :flag-in: ")
